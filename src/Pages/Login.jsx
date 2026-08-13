@@ -58,6 +58,38 @@ function Login() {
   const [theme, setTheme] = useState(getInitialTheme)
   const [isSignUp, setIsSignUp] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const passwordRules = [
+    {
+      label: 'At least 8 characters',
+      isValid: password.length >= 8,
+    },
+    {
+      label: 'One uppercase letter',
+      isValid: /[A-Z]/.test(password),
+    },
+    {
+      label: 'One lowercase letter',
+      isValid: /[a-z]/.test(password),
+    },
+    {
+      label: 'One number',
+      isValid: /[0-9]/.test(password),
+    },
+    {
+      label: 'One special character',
+      isValid: /[^A-Za-z0-9]/.test(password),
+    },
+  ]
+
+  const isPasswordStrong = passwordRules.every(
+    (rule) => rule.isValid,
+  )
+  const doPasswordsMatch =
+    confirmPassword.length > 0 &&
+    password === confirmPassword
 
   useEffect(() => {
     window.localStorage.setItem('aurax-theme', theme)
@@ -65,11 +97,20 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault()
+
+    if (
+      isSignUp &&
+      (!isPasswordStrong || !doPasswordsMatch)
+    ) {
+      return
+    }
   }
 
   function switchForm(nextIsSignUp) {
     setIsSignUp(nextIsSignUp)
     setShowPassword(false)
+    setPassword('')
+    setConfirmPassword('')
   }
 
   function handleCardMove(event) {
@@ -182,15 +223,20 @@ function Login() {
           </p>
         </div>
 
-        <div className="aura-scene" aria-hidden="true">
+        <div className="aura-scene">
           <div className="aura-shadow" />
 
           <div className="aura-ring ring-horizontal" />
           <div className="aura-ring ring-vertical" />
 
-          <div className="aura-core">
+          <Link
+            className="aura-core"
+            to="/"
+            aria-label="Go to AuraX home page"
+            title="Go to Home"
+          >
             <span>AX</span>
-          </div>
+          </Link>
 
           <i className="aura-dot dot-one" />
           <i className="aura-dot dot-two" />
@@ -286,6 +332,16 @@ function Login() {
                       ? 'new-password'
                       : 'current-password'
                   }
+                  value={password}
+                  onChange={(event) =>
+                    setPassword(event.target.value)
+                  }
+                  minLength={isSignUp ? 8 : undefined}
+                  aria-describedby={
+                    isSignUp
+                      ? 'password-requirements'
+                      : undefined
+                  }
                   required
                 />
 
@@ -307,6 +363,60 @@ function Login() {
                 </button>
               </div>
             </div>
+
+            {isSignUp && (
+              <p
+                className={`password-hint ${
+                  isPasswordStrong ? 'is-valid' : ''
+                }`}
+                id="password-requirements"
+                aria-live="polite"
+              >
+                {isPasswordStrong
+                  ? 'Strong password'
+                  : 'Use 8+ characters with uppercase, lowercase, number & symbol.'}
+              </p>
+            )}
+
+            {isSignUp && (
+              <div className="form-group">
+                <label htmlFor="confirmPassword">
+                  Confirm password
+                </label>
+
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter password again"
+                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(event) =>
+                    setConfirmPassword(event.target.value)
+                  }
+                  aria-invalid={
+                    confirmPassword.length > 0 &&
+                    !doPasswordsMatch
+                  }
+                  aria-describedby="password-match-message"
+                  required
+                />
+
+                {confirmPassword.length > 0 && (
+                  <p
+                    className={`password-match ${
+                      doPasswordsMatch ? 'is-valid' : ''
+                    }`}
+                    id="password-match-message"
+                    aria-live="polite"
+                  >
+                    {doPasswordsMatch
+                      ? 'Passwords match'
+                      : 'Passwords do not match'}
+                  </p>
+                )}
+              </div>
+            )}
 
             {!isSignUp && (
               <div className="form-options">
@@ -331,6 +441,10 @@ function Login() {
             <button
               className="login-button"
               type="submit"
+              disabled={
+                isSignUp &&
+                (!isPasswordStrong || !doPasswordsMatch)
+              }
             >
               <span>
                 {isSignUp
