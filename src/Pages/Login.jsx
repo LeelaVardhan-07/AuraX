@@ -439,7 +439,7 @@ function Login() {
             )}
 
             <button
-              className="login-button"
+              className="auth-submit-button"
               type="submit"
               disabled={
                 isSignUp &&

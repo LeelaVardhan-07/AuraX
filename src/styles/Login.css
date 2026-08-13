@@ -926,7 +926,7 @@
   opacity: 0.58;
 }
 
-.login-button {
+.auth-submit-button {
   display: flex;
   width: 100%;
   height: 56px;
@@ -950,25 +950,25 @@
     box-shadow 180ms ease;
 }
 
-.login-button:hover {
+.auth-submit-button:hover {
   box-shadow:
     0 16px 28px rgba(0, 0, 0, 0.2),
     0 0 0 4px var(--accent-soft);
   transform: translateY(-3px);
 }
 
-.login-button:active {
+.auth-submit-button:active {
   transform: translateY(0);
 }
 
-.login-button:disabled {
+.auth-submit-button:disabled {
   opacity: 0.5;
   box-shadow: none;
   cursor: not-allowed;
   transform: none;
 }
 
-.login-button svg {
+.auth-submit-button svg {
   width: 20px;
   fill: none;
   stroke: currentColor;
@@ -978,7 +978,7 @@
   transition: transform 180ms ease;
 }
 
-.login-button:hover svg {
+.auth-submit-button:hover svg {
   transform: translateX(4px);
 }
 
@@ -996,7 +996,7 @@
 .aura-core:focus-visible,
 .text-button:focus-visible,
 .password-toggle:focus-visible,
-.login-button:focus-visible,
+.auth-submit-button:focus-visible,
 .remember-me input:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
@@ -1306,7 +1306,7 @@
   .login-nav,
   .login-card,
   .theme-switcher,
-  .login-button,
+  .auth-submit-button,
   .hero-title {
     transition: none;
   }
