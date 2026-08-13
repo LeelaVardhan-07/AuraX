@@ -1,0 +1,2769 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+
+/* ==========================================
+   THEME VARIABLES
+========================================== */
+
+.landing-page {
+  --aurax-x: 0px;
+  --aurax-y: 0px;
+
+  --orbit-x: 0px;
+  --orbit-y: 0px;
+
+  --orbit-rotate-x: 68deg;
+  --orbit-rotate-z: 0deg;
+
+  --float-one-x: 0px;
+  --float-one-y: 0px;
+
+  --float-two-x: 0px;
+  --float-two-y: 0px;
+
+  --float-three-x: 0px;
+  --float-three-y: 0px;
+
+  --float-four-x: 0px;
+  --float-four-y: 0px;
+
+  --bg: #f4f4f2;
+
+  --surface:
+    rgba(
+      255,
+      255,
+      255,
+      0.74
+    );
+
+  --surface-solid:
+    #ffffff;
+
+  --text:
+    #090909;
+
+  --muted:
+    #626262;
+
+  --border:
+    rgba(
+      0,
+      0,
+      0,
+      0.09
+    );
+
+  --button:
+    #080808;
+
+  --button-text:
+    #ffffff;
+
+  --brand-x:
+    #050505;
+
+  --grid:
+    rgba(
+      0,
+      0,
+      0,
+      0.035
+    );
+
+  --shadow:
+    rgba(
+      0,
+      0,
+      0,
+      0.09
+    );
+
+  --accent:
+    #8b5cf6;
+
+
+  /* ORBIT */
+
+  --orbit-line:
+    rgba(
+      0,
+      0,
+      0,
+      0.36
+    );
+
+  --orbit-line-soft:
+    rgba(
+      0,
+      0,
+      0,
+      0.20
+    );
+
+  --orbit-glow:
+    rgba(
+      0,
+      0,
+      0,
+      0.13
+    );
+
+
+  /* AURAX */
+
+  --aurax-stroke:
+    rgba(
+      0,
+      0,
+      0,
+      0.28
+    );
+
+  --aurax-glow:
+    rgba(
+      0,
+      0,
+      0,
+      0.18
+    );
+
+
+  /* MESSAGE */
+
+  --message-bg:
+    #ffffff;
+
+  --message-text:
+    #111111;
+
+  --message-muted:
+    #888888;
+
+
+  width: 100%;
+
+  min-height: 100svh;
+
+  position: relative;
+
+  overflow-x: hidden;
+
+  color:
+    var(--text);
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #ffffff 0%,
+      #f7f7f5 36%,
+      #f0f0ee 78%
+    );
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  transition:
+    background 300ms ease,
+    color 300ms ease;
+}
+
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.landing-page[data-theme='dark'] {
+  --bg:
+    #050505;
+
+  --surface:
+    rgba(
+      15,
+      15,
+      15,
+      0.74
+    );
+
+  --surface-solid:
+    #111111;
+
+  --text:
+    #f7f7f7;
+
+  --muted:
+    #a3a3a3;
+
+  --border:
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+  --button:
+    #f6f6f6;
+
+  --button-text:
+    #080808;
+
+  --brand-x:
+    #a78bfa;
+
+  --grid:
+    rgba(
+      255,
+      255,
+      255,
+      0.028
+    );
+
+  --shadow:
+    rgba(
+      0,
+      0,
+      0,
+      0.52
+    );
+
+  --orbit-line:
+    rgba(
+      255,
+      255,
+      255,
+      0.38
+    );
+
+  --orbit-line-soft:
+    rgba(
+      255,
+      255,
+      255,
+      0.18
+    );
+
+  --orbit-glow:
+    rgba(
+      167,
+      139,
+      250,
+      0.33
+    );
+
+  --aurax-stroke:
+    rgba(
+      255,
+      255,
+      255,
+      0.30
+    );
+
+  --aurax-glow:
+    rgba(
+      255,
+      255,
+      255,
+      0.22
+    );
+
+  --message-bg:
+    #191919;
+
+  --message-text:
+    #ffffff;
+
+  --message-muted:
+    #929292;
+
+  background:
+    radial-gradient(
+      circle at 50% 46%,
+      #181818 0%,
+      #090909 42%,
+      #030303 82%
+    );
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.landing-navbar {
+  position: relative;
+
+  z-index: 60;
+
+  width:
+    min(
+      1180px,
+      calc(
+        100% - 40px
+      )
+    );
+
+  height: 68px;
+
+  margin:
+    22px auto 0;
+
+  padding:
+    0 16px
+    0 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr auto;
+
+  align-items: center;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    22px;
+
+  background:
+    var(--surface);
+
+  backdrop-filter:
+    blur(22px);
+
+  -webkit-backdrop-filter:
+    blur(22px);
+
+  box-shadow:
+    0 16px 48px
+      var(--shadow),
+    inset 0 1px 0
+      rgba(
+        255,
+        255,
+        255,
+        0.35
+      );
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.aurax-logo {
+  width: max-content;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  font-size:
+    24px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    -1.4px;
+
+  text-decoration:
+    none;
+}
+
+
+.logo-aura {
+  color:
+    #ffffff;
+
+  text-shadow:
+    0 1px 0 #000,
+    0 2px 0 #000,
+    0 3px 8px
+      rgba(
+        0,
+        0,
+        0,
+        0.45
+      );
+}
+
+
+.logo-x {
+  color:
+    var(--brand-x);
+
+  margin-left:
+    1px;
+
+  font-size:
+    27px;
+}
+
+
+.landing-page[data-theme='dark']
+.logo-x {
+  text-shadow:
+    0 0 17px
+      rgba(
+        167,
+        139,
+        250,
+        0.55
+      );
+}
+
+
+/* ==========================================
+   NAV ACTIONS
+========================================== */
+
+.landing-nav-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    flex-end;
+
+  gap: 9px;
+}
+
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+
+  display: grid;
+
+  place-items: center;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    13px;
+
+  background:
+    transparent;
+
+  color:
+    var(--text);
+
+  font-size:
+    17px;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+
+.theme-toggle:hover {
+  transform:
+    translateY(-2px)
+    rotate(-6deg);
+
+  background:
+    var(--surface-solid);
+}
+
+
+.login-button {
+  padding:
+    11px 14px;
+
+  color:
+    var(--text);
+
+  text-decoration:
+    none;
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+}
+
+
+.nav-start-button {
+  padding:
+    12px 17px;
+
+  border-radius:
+    13px;
+
+  background:
+    var(--button);
+
+  color:
+    var(--button-text);
+
+  text-decoration:
+    none;
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+
+  box-shadow:
+    0 10px 28px
+      var(--shadow);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+.nav-start-button:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 15px 38px
+      var(--shadow);
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.landing-hero {
+  position:
+    relative;
+
+  min-height:
+    calc(
+      100svh - 90px
+    );
+
+  padding:
+    clamp(
+      30px,
+      4vh,
+      48px
+    )
+    20px
+    20px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  isolation:
+    isolate;
+}
+
+
+/* GRID */
+
+.landing-hero::before {
+  content: '';
+
+  position:
+    absolute;
+
+  inset: 0;
+
+  z-index:
+    -5;
+
+  background-image:
+    linear-gradient(
+      var(--grid) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--grid) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    70px 70px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 18%,
+      black 74%,
+      transparent
+    );
+
+  pointer-events:
+    none;
+}
+
+
+/* ==========================================
+   BACKGROUND AURAX
+========================================== */
+
+.hero-background-text {
+  position:
+    absolute;
+
+  top:
+    37%;
+
+  left:
+    50%;
+
+  z-index:
+    -2;
+
+  transform:
+    translate(
+      calc(
+        -50% +
+        var(--aurax-x)
+      ),
+      calc(
+        -50% +
+        var(--aurax-y)
+      )
+    );
+
+  font-size:
+    clamp(
+      135px,
+      20vw,
+      350px
+    );
+
+  font-weight:
+    950;
+
+  line-height:
+    0.8;
+
+  letter-spacing:
+    -0.08em;
+
+  white-space:
+    nowrap;
+
+  color:
+    transparent;
+
+  -webkit-text-stroke:
+    1.4px
+    var(--aurax-stroke);
+
+  text-shadow:
+    0 0 8px
+      var(--aurax-glow),
+    0 0 20px
+      var(--aurax-glow);
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      var(--aurax-glow)
+    );
+
+  opacity:
+    0.82;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+
+  transition:
+    transform 120ms linear;
+}
+
+
+.landing-page[data-theme='dark']
+.hero-background-text {
+  opacity:
+    0.92;
+
+  text-shadow:
+    0 0 8px
+      rgba(
+        255,
+        255,
+        255,
+        0.18
+      ),
+    0 0 23px
+      rgba(
+        255,
+        255,
+        255,
+        0.12
+      ),
+    0 0 40px
+      rgba(
+        167,
+        139,
+        250,
+        0.08
+      );
+}
+
+
+/* ==========================================
+   HERO TEXT
+========================================== */
+
+.hero-heading {
+  position:
+    relative;
+
+  z-index:
+    10;
+
+  width:
+    min(
+      850px,
+      100%
+    );
+
+  text-align:
+    center;
+
+  pointer-events:
+    none;
+}
+
+
+.hero-eyebrow {
+  width:
+    max-content;
+
+  max-width:
+    100%;
+
+  margin:
+    0 auto 15px;
+
+  padding:
+    7px 12px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    999px;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    0.17em;
+}
+
+
+.eyebrow-dot {
+  width:
+    6px;
+
+  height:
+    6px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--accent);
+
+  box-shadow:
+    0 0 14px
+      var(--accent);
+}
+
+
+.hero-heading h1 {
+  margin:
+    0;
+
+  color:
+    var(--text);
+
+  font-size:
+    clamp(
+      50px,
+      7vw,
+      104px
+    );
+
+  line-height:
+    0.89;
+
+  font-weight:
+    950;
+
+  letter-spacing:
+    -0.075em;
+}
+
+
+.hero-heading h1 span {
+  display:
+    block;
+
+  color:
+    transparent;
+
+  -webkit-text-stroke:
+    1.7px
+    var(--text);
+}
+
+
+.hero-heading p {
+  width:
+    min(
+      600px,
+      92%
+    );
+
+  margin:
+    20px auto 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    clamp(
+      14px,
+      1.1vw,
+      17px
+    );
+
+  line-height:
+    1.65;
+
+  font-weight:
+    500;
+}
+
+
+/* ==========================================
+   BOT AREA
+========================================== */
+
+.bot-area {
+  position:
+    relative;
+
+  z-index:
+    8;
+
+  width:
+    min(
+      900px,
+      100%
+    );
+
+  height:
+    clamp(
+      285px,
+      34vh,
+      345px
+    );
+
+  margin-top:
+    28px;
+
+  perspective:
+    1200px;
+
+  transform-style:
+    preserve-3d;
+
+  overflow:
+    visible;
+}
+
+
+/* ==========================================
+   ORBIT SYSTEM
+========================================== */
+
+.orbit-system {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    56%;
+
+  z-index:
+    2;
+
+  width:
+    530px;
+
+  max-width:
+    65vw;
+
+  aspect-ratio:
+    1.75;
+
+  transform:
+    translate(
+      calc(
+        -50% +
+        var(--orbit-x)
+      ),
+      calc(
+        -50% +
+        var(--orbit-y)
+      )
+    )
+    rotateX(
+      var(--orbit-rotate-x)
+    )
+    rotateZ(
+      var(--orbit-rotate-z)
+    );
+
+  transform-style:
+    preserve-3d;
+
+  pointer-events:
+    none;
+
+  transition:
+    transform 110ms linear;
+}
+
+
+.orbit {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    50%;
+
+  border-radius:
+    50%;
+
+  border:
+    1.3px solid
+    var(--orbit-line);
+
+  box-shadow:
+    0 0 10px
+      var(--orbit-glow);
+
+  transform-style:
+    preserve-3d;
+}
+
+
+.orbit-one {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  animation:
+    orbitOneSpin
+    15s
+    linear
+    infinite;
+}
+
+
+.orbit-two {
+  width:
+    81%;
+
+  height:
+    76%;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotateZ(35deg);
+
+  animation:
+    orbitTwoSpin
+    12s
+    linear
+    infinite
+    reverse;
+}
+
+
+.orbit-three {
+  width:
+    61%;
+
+  height:
+    57%;
+
+  border-color:
+    var(--orbit-line-soft);
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    )
+    rotateZ(-28deg);
+
+  animation:
+    orbitThreeSpin
+    18s
+    linear
+    infinite;
+}
+
+
+@keyframes orbitOneSpin {
+
+  from {
+    rotate:
+      0deg;
+  }
+
+  to {
+    rotate:
+      360deg;
+  }
+
+}
+
+
+@keyframes orbitTwoSpin {
+
+  from {
+    rotate:
+      0deg;
+  }
+
+  to {
+    rotate:
+      360deg;
+  }
+
+}
+
+
+@keyframes orbitThreeSpin {
+
+  from {
+    rotate:
+      0deg;
+  }
+
+  to {
+    rotate:
+      -360deg;
+  }
+
+}
+
+
+/* ==========================================
+   ORBIT DOTS
+========================================== */
+
+.orbit-dot {
+  position:
+    absolute;
+
+  top:
+    50%;
+
+  right:
+    -6px;
+
+  width:
+    9px;
+
+  height:
+    9px;
+
+  transform:
+    translateY(-50%);
+
+  border-radius:
+    50%;
+
+  background:
+    #111111;
+
+  box-shadow:
+    0 0 10px
+      rgba(
+        0,
+        0,
+        0,
+        0.38
+      );
+}
+
+
+.orbit-dot-two {
+  width:
+    7px;
+
+  height:
+    7px;
+
+  background:
+    var(--accent);
+
+  box-shadow:
+    0 0 14px
+      rgba(
+        139,
+        92,
+        246,
+        0.65
+      );
+}
+
+
+.orbit-dot-three {
+  width:
+    6px;
+
+  height:
+    6px;
+
+  background:
+    var(--text);
+}
+
+
+.landing-page[data-theme='dark']
+.orbit-dot {
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 0 14px
+      rgba(
+        255,
+        255,
+        255,
+        0.65
+      );
+}
+
+
+.landing-page[data-theme='dark']
+.orbit-dot-two {
+  background:
+    #a78bfa;
+
+  box-shadow:
+    0 0 18px
+      rgba(
+        167,
+        139,
+        250,
+        0.85
+      );
+}
+
+
+/* ==========================================
+   BOT GLOW
+========================================== */
+
+.bot-glow {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    57%;
+
+  z-index:
+    1;
+
+  width:
+    400px;
+
+  max-width:
+    64vw;
+
+  height:
+    220px;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(
+        0,
+        0,
+        0,
+        0.13
+      ),
+      transparent 70%
+    );
+
+  filter:
+    blur(20px);
+
+  pointer-events:
+    none;
+}
+
+
+.landing-page[data-theme='dark']
+.bot-glow {
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(
+        167,
+        139,
+        250,
+        0.16
+      ),
+      rgba(
+        255,
+        255,
+        255,
+        0.06
+      ),
+      transparent 72%
+    );
+}
+
+
+/* ==========================================
+   SPLINE
+========================================== */
+
+.spline-wrapper {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  z-index:
+    6;
+
+  overflow:
+    visible;
+
+  opacity:
+    0;
+
+  transform:
+    translateY(8px);
+
+  transition:
+    opacity 650ms ease,
+    transform 700ms
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      );
+}
+
+
+.bot-ready
+.spline-wrapper {
+  opacity:
+    1;
+
+  transform:
+    translateY(0);
+}
+
+
+.spline-frame {
+  width:
+    100%;
+
+  height:
+    100%;
+
+  display:
+    block;
+
+  border:
+    0;
+
+  outline:
+    0;
+
+  background:
+    transparent;
+
+  /*
+    Do not scale.
+    Protect Spline quality.
+  */
+
+  transform:
+    none !important;
+
+  filter:
+    drop-shadow(
+      0 24px 26px
+      rgba(
+        0,
+        0,
+        0,
+        0.15
+      )
+    );
+}
+
+
+/* ==========================================
+   FLOOR
+========================================== */
+
+.bot-floor-shadow {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  bottom:
+    8px;
+
+  z-index:
+    2;
+
+  width:
+    285px;
+
+  max-width:
+    47vw;
+
+  height:
+    38px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(
+        0,
+        0,
+        0,
+        0.22
+      ),
+      transparent 70%
+    );
+
+  filter:
+    blur(8px);
+
+  pointer-events:
+    none;
+}
+
+
+.landing-page[data-theme='dark']
+.bot-floor-shadow {
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(
+        167,
+        139,
+        250,
+        0.18
+      ),
+      rgba(
+        255,
+        255,
+        255,
+        0.06
+      ),
+      transparent 72%
+    );
+}
+
+
+.bot-floor-ring {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  bottom:
+    -5px;
+
+  z-index:
+    2;
+
+  width:
+    330px;
+
+  max-width:
+    52vw;
+
+  height:
+    90px;
+
+  transform:
+    translateX(-50%)
+    rotateX(72deg);
+
+  border:
+    1px solid
+    var(--orbit-line-soft);
+
+  border-radius:
+    50%;
+
+  box-shadow:
+    0 0 14px
+      var(--orbit-glow);
+
+  pointer-events:
+    none;
+}
+
+
+/* ==========================================
+   BOT MESSAGE
+========================================== */
+
+.bot-message {
+  position:
+    absolute;
+
+  top:
+    7%;
+
+  left:
+    calc(
+      50% + 108px
+    );
+
+  z-index:
+    30;
+
+  width:
+    max-content;
+
+  min-width:
+    235px;
+
+  max-width:
+    350px;
+
+  padding:
+    13px 15px
+    8px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    18px
+    18px
+    18px
+    5px;
+
+  background:
+    var(--message-bg);
+
+  color:
+    var(--message-text);
+
+  box-shadow:
+    0 14px 38px
+      rgba(
+        0,
+        0,
+        0,
+        0.16
+      );
+
+  opacity:
+    0;
+
+  transform:
+    translateY(8px)
+    scale(0.95);
+
+  transform-origin:
+    left bottom;
+
+  pointer-events:
+    none;
+
+  transition:
+    opacity 200ms ease,
+    transform 260ms ease;
+}
+
+
+.bot-message::before {
+  content:
+    '';
+
+  position:
+    absolute;
+
+  left:
+    -7px;
+
+  bottom:
+    13px;
+
+  width:
+    14px;
+
+  height:
+    14px;
+
+  background:
+    var(--message-bg);
+
+  border-left:
+    1px solid
+    var(--border);
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  transform:
+    rotate(45deg);
+}
+
+
+.bot-message-visible {
+  opacity:
+    1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+.bot-message-content {
+  font-size:
+    15px;
+
+  font-weight:
+    600;
+
+  line-height:
+    1.45;
+}
+
+
+.message-time {
+  display:
+    block;
+
+  margin-top:
+    3px;
+
+  text-align:
+    right;
+
+  color:
+    var(--message-muted);
+
+  font-size:
+    9px;
+
+  font-weight:
+    600;
+}
+
+
+.typing-cursor {
+  display:
+    inline-block;
+
+  margin-left:
+    2px;
+
+  animation:
+    typingBlink
+    0.75s
+    steps(1)
+    infinite;
+}
+
+
+@keyframes typingBlink {
+
+  0%,
+  49% {
+    opacity:
+      1;
+  }
+
+  50%,
+  100% {
+    opacity:
+      0;
+  }
+
+}
+
+
+/* ==========================================
+   FLOATING OBJECTS
+========================================== */
+
+.floating-object {
+  position:
+    absolute;
+
+  z-index:
+    3;
+
+  border:
+    1px solid
+    var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.92
+      ),
+      rgba(
+        210,
+        210,
+        210,
+        0.20
+      )
+    );
+
+  box-shadow:
+    inset
+      0 1px 2px
+      rgba(
+        255,
+        255,
+        255,
+        0.8
+      ),
+    0 18px 45px
+      rgba(
+        0,
+        0,
+        0,
+        0.11
+      );
+
+  backdrop-filter:
+    blur(7px);
+
+  -webkit-backdrop-filter:
+    blur(7px);
+
+  pointer-events:
+    none;
+
+  transition:
+    transform 120ms linear;
+}
+
+
+.landing-page[data-theme='dark']
+.floating-object {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.17
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.12
+      ),
+      rgba(
+        167,
+        139,
+        250,
+        0.045
+      )
+    );
+
+  box-shadow:
+    inset 0 1px 2px
+      rgba(
+        255,
+        255,
+        255,
+        0.12
+      ),
+    0 0 22px
+      rgba(
+        255,
+        255,
+        255,
+        0.045
+      );
+}
+
+
+.floating-object-one {
+  width:
+    35px;
+
+  height:
+    35px;
+
+  left:
+    14%;
+
+  top:
+    37%;
+
+  border-radius:
+    11px;
+
+  transform:
+    translate(
+      var(--float-one-x),
+      var(--float-one-y)
+    )
+    rotate(28deg);
+}
+
+
+.floating-object-two {
+  width:
+    28px;
+
+  height:
+    28px;
+
+  right:
+    15%;
+
+  top:
+    34%;
+
+  border-radius:
+    50%;
+
+  transform:
+    translate(
+      var(--float-two-x),
+      var(--float-two-y)
+    );
+}
+
+
+.floating-object-three {
+  width:
+    18px;
+
+  height:
+    18px;
+
+  left:
+    24%;
+
+  top:
+    65%;
+
+  border-radius:
+    5px;
+
+  transform:
+    translate(
+      var(--float-three-x),
+      var(--float-three-y)
+    )
+    rotate(-18deg);
+}
+
+
+.floating-object-four {
+  width:
+    11px;
+
+  height:
+    11px;
+
+  right:
+    27%;
+
+  top:
+    63%;
+
+  border-radius:
+    50%;
+
+  border:
+    none;
+
+  background:
+    #a78bfa;
+
+  box-shadow:
+    0 0 18px
+      rgba(
+        167,
+        139,
+        250,
+        0.75
+      );
+
+  transform:
+    translate(
+      var(--float-four-x),
+      var(--float-four-y)
+    );
+}
+
+
+/* ==========================================
+   CTA BUTTONS
+========================================== */
+
+.hero-actions {
+  position:
+    relative;
+
+  z-index:
+    35;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    11px;
+
+  margin-top:
+    -48px;
+}
+
+
+.primary-cta,
+.secondary-cta {
+  min-height:
+    50px;
+
+  padding:
+    0 20px;
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    13px;
+
+  border-radius:
+    15px;
+
+  text-decoration:
+    none;
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
+
+  cursor:
+    pointer;
+
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+
+.primary-cta {
+  background:
+    var(--button);
+
+  color:
+    var(--button-text);
+
+  box-shadow:
+    0 14px 35px
+      var(--shadow);
+}
+
+
+.secondary-cta {
+  border:
+    1px solid
+    var(--border);
+
+  background:
+    var(--surface);
+
+  color:
+    var(--text);
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
+}
+
+
+.primary-cta:hover,
+.secondary-cta:hover {
+  transform:
+    translateY(-4px)
+    perspective(500px)
+    rotateX(4deg);
+
+  box-shadow:
+    0 18px 42px
+      var(--shadow);
+}
+
+
+.primary-cta span,
+.secondary-cta span {
+  font-size:
+    17px;
+}
+
+
+.hero-bottom-text {
+  margin:
+    10px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    10px;
+
+  font-weight:
+    600;
+
+  letter-spacing:
+    0.05em;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+
+  .landing-navbar {
+    width:
+      calc(
+        100% - 28px
+      );
+
+    margin-top:
+      14px;
+  }
+
+
+  .landing-hero {
+    padding-top:
+      38px;
+  }
+
+
+  .hero-background-text {
+    top:
+      39%;
+  }
+
+
+  .bot-area {
+    height:
+      clamp(
+        280px,
+        37vh,
+        330px
+      );
+
+    margin-top:
+      25px;
+  }
+
+
+  .orbit-system {
+    width:
+      430px;
+
+    max-width:
+      78vw;
+  }
+
+
+  .bot-message {
+    top:
+      6%;
+
+    left:
+      calc(
+        50% + 72px
+      );
+
+    min-width:
+      210px;
+
+    max-width:
+      290px;
+  }
+
+
+  .bot-message-content {
+    font-size:
+      14px;
+  }
+
+
+  .hero-actions {
+    margin-top:
+      -44px;
+  }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .landing-navbar {
+    width:
+      calc(
+        100% - 20px
+      );
+
+    height:
+      60px;
+
+    margin-top:
+      10px;
+
+    padding:
+      0 10px
+      0 14px;
+
+    border-radius:
+      18px;
+  }
+
+
+  .aurax-logo {
+    font-size:
+      21px;
+  }
+
+
+  .logo-x {
+    font-size:
+      23px;
+  }
+
+
+  .theme-toggle {
+    width:
+      36px;
+
+    height:
+      36px;
+  }
+
+
+  .login-button {
+    display:
+      none;
+  }
+
+
+  .nav-start-button {
+    padding:
+      10px 13px;
+
+    font-size:
+      11px;
+  }
+
+
+  .landing-hero {
+    min-height:
+      calc(
+        100svh - 70px
+      );
+
+    padding:
+      38px
+      14px
+      35px;
+  }
+
+
+  .hero-eyebrow {
+    margin-bottom:
+      18px;
+
+    padding:
+      8px 13px;
+  }
+
+
+  .hero-heading h1 {
+    font-size:
+      clamp(
+        45px,
+        14.5vw,
+        64px
+      );
+
+    line-height:
+      0.91;
+
+    letter-spacing:
+      -0.065em;
+  }
+
+
+  .hero-heading p {
+    width:
+      min(
+        94%,
+        520px
+      );
+
+    margin-top:
+      18px;
+
+    font-size:
+      13px;
+
+    line-height:
+      1.55;
+  }
+
+
+  .hero-background-text {
+    top:
+      44%;
+
+    font-size:
+      155px;
+
+    opacity:
+      0.69;
+  }
+
+
+  /*
+    IMPORTANT MOBILE FIX
+
+    Extra height pushes the
+    Spline badge lower.
+
+    Buttons are no longer
+    sitting over the viewer.
+  */
+
+  .bot-area {
+    width:
+      116%;
+
+    height:
+      365px;
+
+    margin-left:
+      -8%;
+
+    margin-top:
+      28px;
+  }
+
+
+  .spline-wrapper {
+    height:
+      365px;
+  }
+
+
+  .orbit-system {
+    width:
+      350px;
+
+    max-width:
+      86vw;
+
+    top:
+      58%;
+  }
+
+
+  .bot-message {
+    top:
+      -2%;
+
+    left:
+      50%;
+
+    width:
+      min(
+        290px,
+        82vw
+      );
+
+    min-width:
+      0;
+
+    max-width:
+      none;
+
+    transform:
+      translate(
+        -50%,
+        8px
+      )
+      scale(0.95);
+
+    transform-origin:
+      center bottom;
+
+    border-radius:
+      16px;
+  }
+
+
+  .bot-message-visible {
+    transform:
+      translate(
+        -50%,
+        0
+      )
+      scale(1);
+  }
+
+
+  .bot-message::before {
+    left:
+      50%;
+
+    bottom:
+      -7px;
+
+    transform:
+      translateX(-50%)
+      rotate(-45deg);
+  }
+
+
+  .bot-message-content {
+    font-size:
+      13px;
+  }
+
+
+  /*
+    CTA buttons now start
+    AFTER the Spline viewer.
+  */
+
+  .hero-actions {
+    width:
+      100%;
+
+    margin-top:
+      16px;
+
+    gap:
+      9px;
+
+    position:
+      relative;
+
+    z-index:
+      50;
+  }
+
+
+  .primary-cta,
+  .secondary-cta {
+    min-height:
+      52px;
+
+    padding:
+      0 17px;
+
+    font-size:
+      12px;
+
+    border-radius:
+      16px;
+
+    white-space:
+      nowrap;
+
+    -webkit-tap-highlight-color:
+      transparent;
+  }
+
+
+  /*
+    First mobile tap indicator.
+  */
+
+  .mobile-button-armed {
+    transform:
+      translateY(-3px)
+      scale(1.025);
+
+    box-shadow:
+      0 0 0 2px
+        rgba(
+          139,
+          92,
+          246,
+          0.28
+        ),
+      0 14px 34px
+        var(--shadow);
+  }
+
+
+  .secondary-cta.mobile-button-armed {
+    border-color:
+      rgba(
+        139,
+        92,
+        246,
+        0.55
+      );
+  }
+
+
+  .hero-bottom-text {
+    margin-top:
+      15px;
+
+    font-size:
+      10px;
+  }
+
+
+  .floating-object-one {
+    left:
+      5%;
+  }
+
+
+  .floating-object-two {
+    right:
+      6%;
+  }
+
+
+  .floating-object-three,
+  .floating-object-four {
+    display:
+      none;
+  }
+
+
+  .bot-floor-shadow {
+    width:
+      220px;
+
+    bottom:
+      17px;
+  }
+
+
+  .bot-floor-ring {
+    width:
+      260px;
+
+    bottom:
+      5px;
+  }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 380px) {
+
+  .landing-navbar {
+    padding-left:
+      12px;
+  }
+
+
+  .nav-start-button {
+    padding:
+      9px 10px;
+
+    font-size:
+      10px;
+  }
+
+
+  .hero-heading h1 {
+    font-size:
+      43px;
+  }
+
+
+  .hero-heading p {
+    font-size:
+      12px;
+  }
+
+
+  .bot-area {
+    height:
+      335px;
+
+    margin-top:
+      24px;
+  }
+
+
+  .spline-wrapper {
+    height:
+      335px;
+  }
+
+
+  .hero-actions {
+    margin-top:
+      13px;
+
+    gap:
+      6px;
+  }
+
+
+  .primary-cta,
+  .secondary-cta {
+    min-height:
+      48px;
+
+    padding:
+      0 12px;
+
+    font-size:
+      10.5px;
+  }
+
+
+  .bot-message-content {
+    font-size:
+      12px;
+  }
+
+}
+
+
+/* ==========================================
+   LARGE SCREENS
+========================================== */
+
+@media (min-width: 1600px) {
+
+  .landing-navbar {
+    width:
+      min(
+        1380px,
+        calc(
+          100% - 80px
+        )
+      );
+
+    height:
+      74px;
+  }
+
+
+  .landing-hero {
+    padding-top:
+      48px;
+  }
+
+
+  .hero-background-text {
+    font-size:
+      350px;
+  }
+
+
+  .bot-area {
+    width:
+      1000px;
+
+    height:
+      min(
+        38vh,
+        390px
+      );
+
+    margin-top:
+      30px;
+  }
+
+
+  .orbit-system {
+    width:
+      600px;
+  }
+
+
+  .bot-message {
+    top:
+      7%;
+
+    left:
+      calc(
+        50% + 145px
+      );
+
+    max-width:
+      380px;
+  }
+
+
+  .bot-message-content {
+    font-size:
+      16px;
+  }
+
+
+  .hero-actions {
+    margin-top:
+      -55px;
+  }
+
+}
+
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .orbit {
+    animation:
+      none;
+  }
+
+
+  .typing-cursor {
+    animation:
+      none;
+  }
+
+
+  .hero-background-text,
+  .orbit-system,
+  .floating-object {
+    transition:
+      none;
+  }
+
+}
+
+/* ==================================================
+   FINAL LAPTOP / DESKTOP LANDING ALIGNMENT
+   Keep this block at the VERY BOTTOM of Landing.css
+================================================== */
+@media (min-width: 901px) {
+
+  /*
+    Landing page itself stays locked
+    to one desktop screen.
+
+    IMPORTANT:
+    Do not apply overflow:hidden
+    to html/body/#root because it
+    blocks scrolling on other routes.
+  */
+
+  .landing-page {
+    width: 100%;
+    height: 100svh;
+    min-height: 100svh;
+
+    overflow: hidden;
+  }
+
+  .landing-hero {
+    height: calc(100svh - 90px);
+    min-height: 0;
+
+    padding-top: clamp(
+      24px,
+      3vh,
+      34px
+    );
+
+    padding-bottom: 12px;
+
+    overflow: hidden;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .bot-area {
+    margin-top: 12px;
+  }
+
+  .hero-actions {
+    margin-top: 2px;
+
+    position: relative;
+    z-index: 40;
+  }
+
+  .hero-bottom-text {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}

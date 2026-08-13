@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import './Login.css'
+import '../styles/Login.css'
 
 function SunIcon() {
   return (
